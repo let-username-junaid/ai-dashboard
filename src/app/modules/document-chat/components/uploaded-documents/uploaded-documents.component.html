@@ -1,0 +1,74 @@
+<mat-accordion class="card">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Upload Document
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <input #input type="file" name="file" placeholder="Placeholder" [hidden]="true" accept="application/pdf"
+      (change)="selectDocument($event)">
+    <div class="upload-container">
+      <mat-spinner class="spinner" *ngIf="isFileUploading;else showUploadForm"></mat-spinner>
+      <ng-template #showUploadForm>
+        <h4 *ngIf="selecteFileName">Selected Document : {{selecteFileName}}</h4>
+        <button mat-raised-button color="primary" (click)="input.click()">Select Document</button>
+      </ng-template>
+    </div>
+    <button *ngIf="selecteFileName" mat-raised-button color="primary"
+      [disabled]="isFileUploading">{{isFileUploading?'Uploading...':'Upload'}}</button>
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Uploaded Documents
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-spinner class="spinner" *ngIf="isLoading;else showData"></mat-spinner>
+    <ng-template #showData>
+      <div *ngIf="dataSource.data.length;else noDataFound" class="table-container">
+        <table mat-table matSort [dataSource]="dataSource" class="table-border">
+          <!-- Name Column -->
+          <ng-container matColumnDef="originalFileName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+            <td mat-cell *matCellDef="let file"> {{file.originalFileName}} </td>
+          </ng-container>
+
+          <!-- tokens Column -->
+          <ng-container matColumnDef="numberOfToken">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by tokens"> # Tokens </th>
+            <td mat-cell *matCellDef="let file"> {{file.numberOfToken}} </td>
+          </ng-container>
+
+          <!-- Embedding Column -->
+          <ng-container matColumnDef="totalCost">
+            <th mat-header-cell *matHeaderCellDef> Emedding cost (USD) </th>
+            <td mat-cell *matCellDef="let file"> {{file.totalCost }} </td>
+          </ng-container>
+
+          <!-- Created on Column -->
+          <ng-container matColumnDef="createdOn">
+            <th mat-header-cell *matHeaderCellDef> Created On </th>
+            <td mat-cell *matCellDef="let file"> {{file.createdOn|date:"MMM dd, yyyy 'at' hh:mm a"}} </td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let file"> 
+              <i title="delete" class="fa fa-trash fa-lg icon-delete" (click)="deleteDocument(file._id)"></i> 
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+        </mat-paginator>
+      </div>
+      <ng-template #noDataFound>
+        <p>No data found.</p>
+      </ng-template>
+    </ng-template>
+  </mat-expansion-panel>
+</mat-accordion>

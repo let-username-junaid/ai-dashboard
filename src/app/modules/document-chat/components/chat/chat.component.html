@@ -1,0 +1,40 @@
+
+<div class="chat-container">
+    <ng-container *ngFor="let chat of chatHistory">
+        <mat-card class="card">
+            <mat-card-content>
+                <div class="request">
+                    <div class="request-icon">
+                        <i class="fa fa-question-circle  fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class="response-text">
+                        <p>{{chat.question}}</p>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="card" >
+            <mat-card-content>
+                <div *ngIf="chat.isGeneratingAnswer;else showAnswer">Generating answer...</div>
+                <ng-template #showAnswer>
+                    <div class="response" *ngIf="chat.answer && !chat.isError;else error">
+                        <div class="response-icon">
+                            <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="response-text">
+                            <p>{{chat.answer}}</p>
+                        </div>
+                    </div>
+                    <ng-template #error>
+                        <p>Error in generating response</p>
+                    </ng-template>
+                </ng-template>
+
+            </mat-card-content>
+        </mat-card>
+    </ng-container>
+    <div class="query-box" [style.left]="chatLeftSpace">
+        <input type="text" placeholder="Enter your query" class="input" [(ngModel)]="query" #chatInput/>
+        <i class="fa fa-share fa-2x send-btn" title="send" (click)="generateAnswer()"></i>
+    </div>
+</div>

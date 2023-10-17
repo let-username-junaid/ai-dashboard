@@ -1,0 +1,56 @@
+.card{
+    margin: 10px;
+}
+.response,.request{
+    display: flex;
+    column-gap: 10px;
+}
+.response-text p{
+    font-size: 16px;
+}
+.request-icon,.response-icon{
+    width:30px;
+    flex-shrink: 0;
+}
+.response-icon{
+    color:#72cfee
+}
+.request-icon{
+    color:#f9e650
+}
+.chat-container{
+    max-height: 100%;
+}
+.query-box{
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    column-gap: 10px;
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    backdrop-filter: blur(5px);
+}
+.input{
+    padding: 15px 20px;
+    outline: none;
+    border: none;
+    width: 70%;
+    border-radius: 10px;
+}
+.chat-container{
+    margin-bottom: 60px;
+}
+.send-btn{
+    cursor: pointer;
+    border: 1px solid #fff;
+    padding: 6px;
+    border-radius: 10px;
+    transition: all 1s ease-in;
+}
+.send-btn:hover{
+    border-color:rgb(var(--color-primary-rgb));
+    color:rgb(var(--color-primary-rgb));
+}

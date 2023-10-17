@@ -1,0 +1,8 @@
+<mat-tab-group  (selectedIndexChange)="selectedIndexChange($event)">
+    <mat-tab label="Chat"> 
+        <app-chat *ngIf="showChat"></app-chat>
+    </mat-tab>
+    <mat-tab label="Documents">
+        <app-uploaded-documents></app-uploaded-documents>
+    </mat-tab>
+  </mat-tab-group>

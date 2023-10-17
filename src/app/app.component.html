@@ -1,0 +1,28 @@
+
+<mat-drawer-container class="sidenav-container" autosize>
+  <mat-drawer #drawer class="sidenav" [mode]="navMode" opened>
+    <mat-toolbar color="primary"><i class="fa fa-gg-circle fa-2x branding"> AI</i> </mat-toolbar>
+    <mat-nav-list>
+      <ng-container *ngFor="let menu of menus">
+        <a mat-list-item [routerLink]="menu.path" class="nav-link"  routerLinkActive="active" (click)="selectedMenu=menu">
+          <i [class]="menu.icon"></i>
+          {{menu.label}}
+        </a>
+      </ng-container>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="drawer.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{selectedMenu.label}}</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</mat-drawer-container>

@@ -1,0 +1,22 @@
+.card{
+    margin: 10px;
+}
+.upload-container{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #6a6666;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.icon-delete{
+    color:tomato;
+    cursor: pointer;
+}
+.table-border{
+    border:1px solid #6a6666
+}
+.table-container{
+    overflow: auto;
+}

@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+:root{
+    --color-primary-rgb:123, 31, 162
+}
+
+html, body { height: 100%; }
+body { margin: 0; }
+@import url("../node_modules//font-awesome/css/font-awesome.css");
+
+.spinner{
+    margin: auto;
+}
